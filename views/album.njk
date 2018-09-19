@@ -1,0 +1,111 @@
+{% extends "_layout.njk" %}
+
+{% block stylesheets %}
+<!-- Stylesheets -->
+<link rel="stylesheet" type="text/css" href="../libs/bulma/bulma.min.css?v={{ globals.v3 }}">
+<link rel="stylesheet" type="text/css" href="../css/style.css?v={{ globals.v1 }}">
+<link rel="stylesheet" type="text/css" href="../css/album.css?v={{ globals.v1 }}">
+{% endblock %}
+
+{% block scripts %}
+<!-- Scripts -->
+<script type="text/javascript" src="../libs/lazyload/lazyload.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="../js/album.js?v={{ globals.v1 }}"></script>
+{% endblock %}
+
+{% block opengraph %}
+<!-- Open Graph tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{ title }} &#8211; {{ count }} files" />
+<meta property="og:url" content="{{ url }}" />
+<meta property="og:description" content="A pomf-like file uploading service that doesn't suck." />
+<meta property="og:image" content="{{ thumb }}" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card tags -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ title }} &#8211; {{ count }} files">
+<meta name="twitter:description" content="A pomf-like file uploading service that doesn't suck.">
+<meta name="twitter:image" content="{{ thumb }}">
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<section class="section">
+  <div class="container">
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <h1 id="title" class="title">
+            {{ title }}
+          </h1>
+        </div>
+        <div class="level-item">
+          <h1 id="count" class="subtitle">
+            {{ count }} files
+          </h1>
+        </div>
+      </div>
+
+      {% if generateZips and files.length -%}
+      <div class="level-right">
+        <p class="level-item">
+          {% if downloadLink -%}
+          <a class="button is-primary is-outlined" title="Download album" href="{{ downloadLink }}">Download album</a>
+          {%- else -%}
+          <a class="button is-primary is-outlined" title="The album's owner has chosen to disable download" disabled>Download disabled</a>
+          {%- endif %}
+        </p>
+      </div>
+      {%- endif %}
+    </nav>
+    {% if generateZips and downloadLink and files.length -%}
+    <article class="message">
+      <div class="message-body">
+        Album archives may be cached by CDN, if the one you downloaded seems outdated, you should try refreshing the page to get the latest version of the download link.
+      </div>
+    </article>
+    {%- endif %}
+    <hr>
+    {% if files.length -%}
+    <div id="table" class="columns is-multiline is-mobile is-centered has-text-centered">
+      {% for file in files %}
+        <div class="image-container column is-narrow">
+          <a class="image" href="{{ file.file }}" target="_blank" rel="noopener">
+            {% if file.thumb -%}
+            <img alt="{{ file.name }}" data-src="{{ file.thumb }}">
+            {#-
+              This will kinda increase the overall page size,
+              but this will still benefit users with JavaScript enabled by lazyloading images,
+              and not causing those who have JavaScript disabled be unable to view the images.
+            #}
+            <noscript><img alt="{{ file.name }}" src="{{ file.thumb }}" style="display: none"></noscript>
+            {%- else -%}
+            <h1 class="title">{{ file.extname | default('N/A') }}</h1>
+            {%- endif %}
+          </a>
+          <div class="details">
+            <p><span class="name" title="{{ file.file }}">{{ file.name }}</span></p>
+            <p>{{ file.size }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {%- else -%}
+    <article class="message">
+      <div class="message-body">
+        There are no files in the album.
+      </div>
+    </article>
+    {%- endif %}
+  </div>
+</section>
+
+{# Hide lazyload img tags and show noscript img tags #}
+<noscript>
+  <style>
+    img[data-src] { display: none; }
+    img[src] { display: block !important; }
+  </style>
+</noscript>
+{% endblock %}

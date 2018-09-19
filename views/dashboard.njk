@@ -1,0 +1,99 @@
+{% extends "_layout.njk" %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="libs/fontello/fontello.css?v={{ globals.v3 }}">
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css?v={{ globals.v1 }}">
+<link rel="stylesheet" type="text/css" href="css/dashboard.css?v={{ globals.v1 }}">
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="libs/sweetalert/sweetalert.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/axios/axios.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/clipboard.js/clipboard.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/lazyload/lazyload.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="js/dashboard.js?v={{ globals.v1 }}"></script>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<section id="auth" class="hero is-light is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Admin dashboard
+      </h1>
+      <h2 class="subtitle">
+        <p class="control has-addons">
+          <input id="token" class="input is-danger" type="text" placeholder="Your admin token">
+          <a id="tokenSubmit" class="button is-danger is-outlined">Check</a>
+        </p>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard" class="section">
+  <div id="panel" class="container">
+    <h1 class="title">
+      Dashboard
+    </h1>
+    <h1 class="subtitle">
+      A simple <strong>dashboard</strong>, to sort your uploaded stuff
+    </h1>
+    <hr>
+
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <aside id="menu" class="menu">
+          <p class="menu-label">General</p>
+          <ul class="menu-list">
+            <li>
+              <a href=".">Frontpage</a>
+            </li>
+            <li>
+              <a id="itemUploads">Uploads</a>
+            </li>
+            <li>
+              <a id="itemDeleteByNames">Delete by names</a>
+            </li>
+          </ul>
+          <p class="menu-label">Albums</p>
+          <ul class="menu-list">
+            <li>
+              <a id="itemManageGallery">Manage your albums</a>
+            </li>
+            <li>
+              <ul id="albumsContainer"></ul>
+            </li>
+          </ul>
+          <p class="menu-label">Administration</p>
+          <ul class="menu-list">
+            <li>
+              <a id="ShareX">ShareX user profile</a>
+            </li>
+            <li>
+              <a id="itemFileLength">File name length</a>
+            </li>
+            <li>
+              <a id="itemTokens">Manage your token</a>
+            </li>
+            <li>
+              <a id="itemPassword">Change your password</a>
+            </li>
+            <li>
+              <a id="itemLogout">Logout</a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div id="page" class="column has-text-centered is-third-quarters">
+        <img alt="logo" src="images/logo.png?v={{ globals.v2 }}">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "_partial/noscript.njk" %}
+{% endblock %}

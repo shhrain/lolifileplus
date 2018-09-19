@@ -1,0 +1,185 @@
+#auth,
+#dashboard {
+  display: none
+}
+
+.section {
+  background: none;
+}
+
+.menu-list a {
+  color: #3794d2;
+}
+
+.menu-list a:hover {
+  color: #60a8dc;
+  background-color: #4d4d4d;
+}
+
+.menu-list a.is-active {
+  color: #eff0f1;
+  background-color: #3794d2;
+}
+
+.pagination a {
+  color: #eff0f1;
+  border-color: #4d4d4d;
+  background-color: #31363b;
+}
+
+.pagination-link:hover,
+.pagination-next:hover,
+.pagination-previous:hover {
+  color: #eff0f1;
+  border-color: #60a8dc;
+  background-color: #31363b;
+}
+
+.label {
+  color: #bdc3c7;
+}
+
+.menu-list li ul {
+  border-left-color: #898b8d;
+}
+
+.image-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200px;
+  height: 200px;
+  margin: 9px;
+  background-color: #31363b;
+  overflow: hidden;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-box-shadow: 0 20px 60px rgba(10, 10, 10, 0.05), 0 5px 10px rgba(10, 10, 10, 0.1), 0 1px 1px rgba(10, 10, 10, 0.2);
+  box-shadow: 0 20px 60px rgba(10, 10, 10, 0.05), 0 5px 10px rgba(10, 10, 10, 0.1), 0 1px 1px rgba(10, 10, 10, 0.2);
+}
+
+.image-container .title {
+  font-weight: normal;
+}
+
+.image-container .image {
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+.image-container .file-checkbox {
+  position: absolute;
+  top: .75rem;
+  left: .75rem;
+}
+
+.image-container .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+}
+
+.image-container .controls .button {
+  border-radius: 0;
+}
+
+.image-container .controls .button:not(:active):not(:hover) {
+  color: #fff;
+  background-color: rgba(49, 54, 59, .75);
+}
+
+.image-container .details {
+  position: absolute;
+  left: .75rem;
+  bottom: .75rem;
+  right: .75rem;
+  background-color: rgba(49, 54, 59, .75);
+  color: #eff0f1;
+  padding: .25rem;
+  font-size: .75rem;
+}
+
+.image-container .details p {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.image-container .details p span {
+  font-weight: 800;
+}
+
+/* Make extra info appear on hover only on non-touch devices */
+
+.no-touch .image-container .file-checkbox {
+  opacity: .25;
+  -webkit-transition: opacity .25s;
+  transition: opacity .25s;
+}
+
+.no-touch .image-container .controls,
+.no-touch .image-container .details {
+  opacity: 0;
+  -webkit-transition: opacity .25s;
+  transition: opacity .25s;
+}
+
+.no-touch .image-container:hover .file-checkbox,
+.no-touch .image-container:hover .controls,
+.no-touch .image-container:hover .details {
+  opacity: 1;
+}
+
+#page {
+  /* fix overflow issue with flex */
+  min-width: 0;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  color: #bdc3c7;
+  background-color: #31363b;
+  font-size: .75rem;
+}
+
+.table tr:hover,
+.table.is-striped tbody tr:nth-child(2n) {
+  background: none;
+}
+
+.table.is-striped tbody tr:hover,
+.table.is-striped tbody tr:nth-child(2n):hover,
+.tag {
+  background-color: #4d4d4d;
+}
+
+.table thead td,
+.table thead th {
+  color: #eff0f1;
+  background-color: #ff3860;
+}
+
+.table td,
+.table th {
+  border: 0;
+  white-space: nowrap;
+}
+
+.table th {
+  color: #eff0f1;
+  height: 2.25em;
+}
+
+.table td a:not([href]) {
+  text-decoration: line-through;
+}

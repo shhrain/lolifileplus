@@ -1,0 +1,102 @@
+{% set name = "safe.fiery.me" %}
+{% set root = "https://safe.fiery.me" %}
+{% set motto = "A small safe worth protecting." %}
+{% set description = "A pomf-like file uploading service that doesn't suck." %}
+{% set keywords = "upload,lolisafe,file,images,hosting,bobby,fiery" %}
+
+{% set home_subtitle = "A <strong>modern</strong> self-hosted file upload service" %}
+
+{% set google_site_verification = null %}
+
+{#
+  This will be appended to the URLs of static files (CSS, JS, images, etc),
+  and should be changed on every updates to make sure clients load the very latest version of them.
+  v1: CSS and JS files (lolisafe).
+  v2: Images and config files (manifest.json, browserconfig.xml, etc).
+  v3: CSS and JS files (libs such as bulma, lazyload, etc).
+#}
+{% set v1 = "SLAsa9Rk5w" %}
+{% set v2 = "Ii3JYKIhb0" %}
+{% set v3 = "HrvcYD3KTh" %}
+
+{#
+  These will be the links in the homepage and the No-JS uploader.
+  You may remove icons by changing "home_icons" to false.
+  It will then automatically use "attrs.title" as the display text.
+  Note: No-JS uploader page will have icons disabled by default (it will also not load fontello.css).
+#}
+{% set home_icons = true %}
+{% set home_links = [
+  {
+    attrs: {
+      title: 'Home',
+      href: 'https://fiery.me'
+    },
+    icon: 'icon-home icon-2x'
+  },
+  {
+    attrs: {
+      title: 'Blog',
+      href: 'https://blog.fiery.me'
+    },
+    icon: 'icon-archive icon-2x'
+  },
+  {
+    attrs: {
+      id: 'ShareX',
+      title: 'ShareX',
+      href: 'https://safe.fiery.me/safe.fiery.me.sxcu?v=' + v2
+    },
+    icon: 'icon-sharex icon-2x'
+  },
+  {
+    attrs: {
+      title: 'Chrome extension',
+      href: 'https://chrome.google.com/webstore/detail/loli-safe-uploader/enkkmplljfjppcdaancckgilmgoiofnj',
+      target: '_blank',
+      rel: 'noopener'
+    },
+    icon: 'icon-chrome icon-2x'
+  },
+  {
+    attrs: {
+      title: 'Firefox extension',
+      href: 'https://github.com/BobbyWibowo/loli-safe-extension/releases',
+      target: '_blank',
+      rel: 'noopener'
+    },
+    icon: 'icon-firefox icon-2x'
+  },
+  {
+    attrs: {
+      title: 'Bash uploader',
+      href: 'https://github.com/BobbyWibowo/uguush/tree/lolisafe-kde',
+      target: '_blank',
+      rel: 'noopener'
+    },
+    icon: 'icon-terminal icon-2x'
+  },
+  {
+    attrs: {
+      title: 'FAQ',
+      href: 'faq'
+    },
+    icon: 'icon-help-circled icon-2x'
+  },
+  {
+    attrs: {
+      title: 'Dashboard',
+      href: 'auth'
+    },
+    icon: 'icon-gauge icon-2x'
+  },
+  {
+    attrs: {
+      title: 'View on GitHub',
+      href: 'https://github.com/BobbyWibowo/lolisafe',
+      target: '_blank',
+      rel: 'noopener'
+    },
+    icon: 'icon-github-circled icon-2x'
+  }
+] %}

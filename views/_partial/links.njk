@@ -1,0 +1,33 @@
+{% if plain_links or not globals.home_icons %}
+{% set separator = joiner('<span>|</span>') %}
+{% endif %}
+
+{% macro attrs(obj) %}
+{% set space = joiner(' ') %}
+{% for id, val in obj -%}
+{{ space() }}{{ id }}="{{ val }}"
+{%- endfor %}
+{% endmacro %}
+
+<div class="columns is-gapless">
+  <div class="column is-hidden-mobile"></div>
+  <div class="column">
+    <div id="linksColumn" class="columns is-mobile is-multiline is-centered {{ "is-gapless" if separator }}">
+      {% for link in globals.home_links -%}
+      {{ (separator() | safe) if separator }}
+      <div class="column is-narrow">
+        <a {{ attrs(link.attrs) | trim }}>
+          {% if separator -%}
+          {{ link.attrs.title }}
+          {%- else -%}
+          <span class="icon is-medium">
+            <i class="{{ link.icon }}"></i>
+          </span>
+          {%- endif %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="column is-hidden-mobile"></div>
+</div>

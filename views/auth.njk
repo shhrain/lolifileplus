@@ -1,0 +1,67 @@
+{% extends "_layout.njk" %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="libs/fontello/fontello.css?v={{ globals.v3 }}">
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css?v={{ globals.v1 }}">
+<link rel="stylesheet" type="text/css" href="css/auth.css?v={{ globals.v1 }}">
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="libs/sweetalert/sweetalert.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/axios/axios.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="js/auth.js?v={{ globals.v1 }}"></script>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<section id="login" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-one-third is-hidden-touch"></div>
+        <div class="column">
+          <h1 class="title">
+            Dashboard Access
+          </h1>
+          <h2 class="subtitle">
+            Login or register
+          </h2>
+          <div class="field">
+            <div class="control">
+              <input id="user" name="user" class="input" type="text" placeholder="Your username">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input id="pass" name="pass" class="input" type="password" placeholder="Your password">
+            </div>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <a id="registerBtn" class="button">
+                <span class="icon">
+                  <i class="icon-user-plus"></i>
+                </span>
+                <span>Register</span>
+              </a>
+            </div>
+            <div class="control">
+              <button id="loginBtn" type="submit" class="button">
+                <span class="icon">
+                  <i class="icon-login"></i>
+                </span>
+                <span>Log in</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third is-hidden-mobile"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "_partial/noscript.njk" %}
+{% endblock %}

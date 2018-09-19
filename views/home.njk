@@ -1,0 +1,123 @@
+{% extends "_layout.njk" %}
+
+{% block endmeta %}
+{{ super() }}
+{% if globals.google_site_verification %}
+<meta name="google-site-verification" content="{{ globals.google_site_verification }}" />
+{% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="libs/fontello/fontello.css?v={{ globals.v3 }}">
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css?v={{ globals.v1 }}">
+<link rel="stylesheet" type="text/css" href="css/home.css?v={{ globals.v1 }}">
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript" src="libs/sweetalert/sweetalert.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/dropzone/dropzone.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/axios/axios.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/clipboard.js/clipboard.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="libs/lazyload/lazyload.min.js?v={{ globals.v3 }}"></script>
+<script type="text/javascript" src="js/home.js?v={{ globals.v1 }}"></script>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<section class="hero is-fullheight has-text-centered" id="home">
+  <div class="hero-body section">
+    <div class="container">
+      <p id="b">
+        <img class="logo" alt="logo" src="images/logo_smol.png?v={{ globals.v2 }}">
+      </p>
+      <h1 class="title">{{ globals.name }}</h1>
+      <h2 class="subtitle">{{ globals.home_subtitle | safe }}</h2>
+
+      <h3 class="subtitle" id="maxFileSize"></h3>
+
+      <div class="columns is-gapless">
+        <div class="column is-hidden-mobile"></div>
+        <div class="column">
+          <a id="loginToUpload" class="button is-danger is-loading" style="display: flex"></a>
+          <div id="albumDiv" class="field has-addons" style="display: none">
+            <div class="control is-expanded">
+              <div class="select is-fullwidth">
+                <select id="albumSelect"></select>
+              </div>
+            </div>
+            <div class="control">
+              <a id="createAlbum" class="button is-breeze" title="Create new album">
+                <i class="icon-plus"></i>
+              </a>
+            </div>
+          </div>
+          {% if urlMaxSize -%}
+          <div id="tabs" class="tabs is-centered" style="display: none">
+            <ul>
+              <li data-id="tab-files" class="is-active"><a>Files</a></li>
+              <li data-id="tab-urls"><a>URLs</a></li>
+            </ul>
+          </div>
+          {%- endif %}
+          <div id="tab-files" class="tab-content" style="display: none">
+            <div class="field dz-container"></div>
+            <div class="field uploads" style="display: none"></div>
+          </div>
+          {% if urlMaxSize -%}
+          <div id="tab-urls" class="tab-content" style="display: none">
+            <div class="field">
+              <div class="control">
+                <textarea id="urls" class="textarea" rows="2"></textarea>
+              </div>
+              <p class="help">Maximum file size for URL upload is {{ urlMaxSize }}.</p>
+            </div>
+            <div class="field">
+              <div class="control is-expanded">
+                <a id="uploadUrls" class="button is-danger is-fullwidth is-unselectable">
+                  <span class="icon">
+                    <i class="icon-upload-cloud"></i>
+                  </span>
+                  <span>Upload URLs</span>
+                </a>
+              </div>
+            </div>
+            <div class="field uploads" style="display: none"></div>
+          </div>
+          {%- endif %}
+        </div>
+        <div class="column is-hidden-mobile"></div>
+      </div>
+
+      <div id="tpl" style="display: none">
+        <div class="field">
+          <img class="is-unselectable">
+          <p class="name is-unselectable"></p>
+          <progress class="progress is-small is-danger" value="0" max="100">0%</progress>
+          <p class="error"></p>
+          <p class="link">
+            <a target="_blank" rel="noopener"></a>
+          </p>
+          <p class="clipboard-mobile is-hidden-desktop" style="display: none">
+            <a class="button is-info is-outlined clipboard-js" style="display: flex">
+              <span class="icon">
+                <i class="icon-clipboard-1"></i>
+              </span>
+              <span>Copy link to clipboard</span>
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <h3 class="subtitle">
+        <a href="auth" id="loginLinkText"></a>
+      </h3>
+
+      {% include "_partial/links.njk" %}
+    </div>
+  </div>
+</section>
+
+{% include "_partial/noscript.njk" %}
+{% endblock %}

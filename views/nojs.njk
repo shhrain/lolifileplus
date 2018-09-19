@@ -1,0 +1,66 @@
+{% extends "_layout.njk" %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="css/home.css?v={{ globals.v1 }}">
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<section class="hero is-fullheight has-text-centered" id="home">
+  <div class="hero-body section">
+    <div class="container">
+      <p id="b">
+        <img class="logo" alt="logo" src="images/logo_smol.png?v={{ globals.v2 }}">
+      </p>
+      <h1 class="title">{{ globals.name }}</h1>
+      <h2 class="subtitle">{{ globals.home_subtitle | safe }}</h2>
+
+      <h3 class="subtitle" id="maxFileSize">
+        Maximum upload size per file is {{ renderOptions.maxFileSize }}
+      </h3>
+
+      <div class="columns is-gapless">
+        <div class="column is-hidden-mobile"></div>
+        <div class="column">
+          <p class="subtitle" style="font-size: 1rem">
+            Files uploaded through this No-JS uploader will not be associated to your account, if you have any.
+          </p>
+          {% if renderOptions.uploadDisabled -%}
+          <a class="button is-danger" style="display: flex" href="auth">{{ renderOptions.uploadDisabled }}</a>
+          {%- else -%}
+          <form id="form" class="field" action="" method="post" enctype="multipart/form-data">
+            <div class="field">
+              <input type="file" name="files[]" multiple="multiple" style="width: 100%">
+            </div>
+            <div class="field">
+              <input type="submit" class="button is-danger" value="Upload" style="width: 100%">
+            </div>
+          </form>
+          {%- endif %}
+          {% if files -%}
+          <div class="field uploads nojs">
+            {% for file in files -%}
+            <div class="field">
+              {% if errorMessage -%}
+              <p class="error">{{ errorMessage | safe }}</p>
+              {%- endif %}
+              {% if file.url -%}
+              <p class="link">
+                <a href="{{ file.url }}" target="_blank" rel="noopener">{{ file.url | safe }}</a>
+              </p>
+              {%- endif %}
+            </div>
+            {% endfor %}
+          </div>
+          {%- endif %}
+        </div>
+        <div class="column is-hidden-mobile"></div>
+      </div>
+
+      {% set plain_links = true %}
+      {% include "_partial/links.njk" %}
+    </div>
+  </div>
+</section>
+{% endblock %}
